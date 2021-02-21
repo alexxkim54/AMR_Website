@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from flask import Flask, request, jsonify, render_template
 import pickle
 from lightfm import LightFM
@@ -14,6 +15,12 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
 
+    reviews = pd.read_csv("product_reviews.csv")
+    dataset = Dataset()
+    dataset.fit(users = (x for x in reviews.userID),
+                        items = (x for x in reviews.productID))
+
+    user_id_map, user_feature_map, item_id_map, item_feature_map = dataset.mapping()
     new_user = 'newUser'
 
     # change the item_id to actual input
@@ -24,16 +31,15 @@ def predict():
     data.fit_partial(users=[new_user], items=[item_id])
     (new_int, new_weights) = data.build_interactions(list(zip([new_user], [item_id])))
     # model.fit_partial(interactions=new_int)
-    user_id_map, user_feature_map, item_id_map, item_feature_map = data.mapping()
+    user_id_map2, user_feature_map2, item_id_map2, item_feature_map2 = data.mapping()
     items = list(range(1975))
-    predict = model.predict(user_id_map[new_user], items)
+    predict = model.predict(user_id_map2[new_user], items)
 
     recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     output = list(recs.keys())[:4]
-    prediction_text = 'Recommended items are: Top 4 recommendations {}'.format(output)
-    print(prediction_text)
-    return render_template('index.html', prediction_text)
+    prediction_text = "The top 4 recommended products are: {}".format(output)
+    return render_template('index.html', prediction_text=prediction_text)
 
 @app.route('/results',methods=['POST'])
 def results():
