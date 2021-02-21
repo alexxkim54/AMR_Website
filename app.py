@@ -38,8 +38,10 @@ def predict():
     recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     output = list(recs.keys())[:4]
-    prediction_text = "The top 4 recommended products are: {}".format(output)
-    return render_template('index.html', prediction_text=prediction_text)
+    face_prediction = output[0]
+    eye_prediction = output[1]
+#    prediction_text = "The top 4 recommended products are: {}".format(output)
+    return render_template('index.html', prediction_text=output)
 
 @app.route('/results',methods=['POST'])
 def results():
