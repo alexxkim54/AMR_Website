@@ -35,7 +35,7 @@ def predict():
     items = list(range(1975))
     predict = model.predict(user_id_map2[new_user], items)
 
-    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
+    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     output = list(recs.keys())[:4]
     face_prediction = output[0]
@@ -52,7 +52,7 @@ def results():
     new_user = 'newUser'
 
     # change the item_id to actual input
-    item_id = 2060358
+    item_id = 2060358   
 
     data = Dataset()
     data.fit_partial(users=[new_user], items=[item_id])
@@ -61,9 +61,9 @@ def results():
     items = list(range(1975))
     predict = model.predict(user_id_map[new_user], items)
 
+    
 
-
-    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
+    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     output = list(recs.keys())[:4]
 
