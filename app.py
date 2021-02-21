@@ -14,7 +14,8 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-
+    print([x for x in request.form.values()])
+    print(request.form)
     reviews = pd.read_csv("product_reviews.csv")
     dataset = Dataset()
     dataset.fit(users = (x for x in reviews.userID),

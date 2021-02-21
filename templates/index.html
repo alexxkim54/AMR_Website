@@ -33,16 +33,16 @@
                 <hr />
                 <div id='block-1'>
                     <label for='type_option-1' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option' id='option-1' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option' id='option-1' value='Oily' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Oily</label>
                     <label for='type_option-2' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option'  id='option-2' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option'  id='option-2' value='Dry' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Dry</label>
                     <label for='type_option-3' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option'  id='option-3' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option'  id='option-3' value='Combination' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Combination</label>
                     <label for='type_option-4' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option'  id='option-4' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option'  id='option-4' value='Normal' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Normal</label>
                 </div>
                 <hr /> 
@@ -52,20 +52,24 @@
                 <hr />
                 <div id='block-2'>
                     <label for='tone_option-1' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option1' id='option-1' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option1' id='option-1' value='Fair' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Fair</label>
                     <label for='tone_option-2' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option1'  id='option-2' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option1'  id='option-2' value='Light' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Light</label>
                     <label for='tone_option-3' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option1'  id='option-3' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option1'  id='option-3' value='Medium' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Medium</label>
                     <label for='tone_option-4' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option1'  id='option-4' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option1'  id='option-4' value='Tan' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Tan</label>
                     <label for='tone_option-5' style=' padding: 5px; font-size: 2.5rem;'>
-                        <input type='radio' name='option1'  id='option-5' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+                        <input type='radio' name='option1'  id='option-5' value='Deep' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Deep</label>
+                    <div class="slidecontainer">
+                    <input type="range" min="45" max="100" class="slider" id="myRange" name="myRange">
+                    </div>
+                    <p>$ <span id="price"></span></p>
                 </div>
                 <hr /> 
             </div>
@@ -74,7 +78,7 @@
                 <hr />
             </div>
             <div class="slidecontainer">
-                <input type="range" min="45" max="100" class="slider" id="myRange">
+                <input type="range" min="45" max="100" class="slider" id="myRange" name="myRange">
                 <p>$ <span id="price"></span></p>
             </div>
             <script>
@@ -119,9 +123,8 @@
         <br>
         <!-- <div class="container"> -->
             <!-- <button class="submit_form" type="submit">Find me a set!</button> -->
-        <!-- </div> -->
+        <!-- </div> -->  
     </form>
-    
     <br> 
     <br>
     <br> 
