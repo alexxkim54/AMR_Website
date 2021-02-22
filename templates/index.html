@@ -66,15 +66,11 @@
                     <label for='tone_option-5' style=' padding: 5px; font-size: 2.5rem;'>
                         <input type='radio' name='option1'  id='option-5' value='Deep' style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
                         Deep</label>
-                    <div class="slidecontainer">
-                    <input type="range" min="45" max="100" class="slider" id="myRange" name="myRange">
-                    </div>
-                    <p>$ <span id="price"></span></p>
                 </div>
                 <hr /> 
             </div>
             <div style='transform: scale(0.65); position: relative'>
-                <h3>What is your total budget?</h3>
+                <h3>What is your budget per product?</h3>
                 <hr />
             </div>
             <div class="slidecontainer">
@@ -95,30 +91,19 @@
                 <h3>Do you have any of the following allergies?</h3>
                 <hr />
             </div>
-            <form>
-                <select multiple>
-                <option>Ingredient</option>
-                <option>Ingredient</option>
-                <option>Ingredient</option>
-                <option>Ingredient</option>
+            <!--<form id='allergies' name='allergies'>-->
+                <select name='allergies' multiple>
+                <option>Rubber</option>
+                <option>Fragrances</option>
+                <option>Preservatives</option>
+                <option>Metals</option>
                 </select>
                 <br><br>
-            </form>
-            <div style='transform: scale(0.65); position: relative'>
-                <h3>What aesthetic would you like to achieve?</h3>
-                <hr />
-            </div>
-            <form>
-                <select multiple>
-                <option>Aesthetic</option>
-                <option>Aesthetic</option>
-                <option>Aesthetic</option>
-                <option>Aesthetic</option>
-                </select>
-                <br><br>
-            </form>
+                <p> We would love to know which products you currently enjoy! Please enter at least 1 Sephora product ID below (separated by a comma e.g. 1234567,9876543).</p>
+                <input type='text' name='input_products' multiple min='1'>
+            <!--</form>-->
         <!-- </div> -->
-    
+            
         <br>
         <br>
         <!-- <div class="container"> -->
