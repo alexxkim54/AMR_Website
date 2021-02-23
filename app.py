@@ -95,33 +95,49 @@ def predict():
         if label == 'lips':
             lips_recs[key] = value
 
-    face = list(face_recs.keys())[0]
-    eye = list(eye_recs.keys())[0]
-    cheek = list(cheek_recs.keys())[0]
-    lips = list(lips_recs.keys())[0]
+    
+    face = list(face_recs.keys())
+    face_url = "We could not find any face products that match your preferences."
+    eye_url = "We could not find any eye products that match your preferences."
+    cheek_url = "We could not find any cheek products that match your preferences."
+    lips_url = "We could not find any lip products that match your preferences."
 
-    face_brand = products[products['productID'] == face].brand
-    face_url = products[products['productID'] == face].URL
-    face_name = products[products['productID'] == face].name
-    face_price = products[products['productID'] == face].price
+    if len(face) > 0:
+        face = face[0]
+        face_brand = products[products['productID'] == face].brand.values[0]
+        face_url = products[products['productID'] == face].URL.values[0]
+        face_name = products[products['productID'] == face].name.values[0]
+        face_price = products[products['productID'] == face].price.values[0]
 
-    eye_brand = products[products['productID'] == eye].brand
-    eye_url = products[products['productID'] == eye].URL
-    eye_name = products[products['productID'] == eye].name
-    eye_price = products[products['productID'] == eye].price
+    eye = list(eye_recs.keys())
+    if len(eye) > 0:
+        eye = eye[0]
+        eye_brand = products[products['productID'] == eye].brand.values[0]
+        eye_url = products[products['productID'] == eye].URL.values[0]
+        eye_name = products[products['productID'] == eye].name.values[0]
+        eye_price = products[products['productID'] == eye].price.values[0]
 
-    cheek_brand = products[products['productID'] == cheek].brand
-    cheek_url = products[products['productID'] == cheek].URL
-    cheek_name = products[products['productID'] == cheek].name
-    cheek_price = products[products['productID'] == cheek].price
+    cheek = list(cheek_recs.keys())
+    if len(cheek) > 0:
+        cheek = cheek[0]
+        cheek_brand = products[products['productID'] == cheek].brand.values[0]
+        cheek_url = products[products['productID'] == cheek].URL.values[0]
+        cheek_name = products[products['productID'] == cheek].name.values[0]
+        cheek_price = products[products['productID'] == cheek].price.values[0]
 
-    lips_brand = products[products['productID'] == lips].brand
-    lips_url = products[products['productID'] == lips].URL
-    lips_name = products[products['productID'] == lips].name
-    lips_price = products[products['productID'] == lips].price
+    lips = list(lips_recs.keys())
+    if len(lips) > 0:
+        lips = lips[0]
+        lips_brand = products[products['productID'] == lips].brand.values[0]
+        lips_url = products[products['productID'] == lips].URL.values[0]
+        lips_name = products[products['productID'] == lips].name.values[0]
+        lips_price = products[products['productID'] == lips].price.values[0]
 
-    output = face_url + ',' + eye_url + ',' + cheek_url + ',' + lips_url
-    return render_template('index.html', prediction_text=output)
+    brand_output = [face_brand, eye_brand, cheek_brand, lips_brand]
+    product_output = [face_name, eye_name, cheek_name, lips_name]
+    price_output = [face_price, eye_price, cheek_price, lips_price]
+    url_output = [face_url, eye_url, cheek_url, lips_url]
+    return render_template('index.html', brand_text=brand_output, product_text=product_output, price_text=price_output, link_text=url_output)
 
 @app.route('/results',methods=['POST'])
 def results():

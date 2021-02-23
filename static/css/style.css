@@ -55,7 +55,7 @@ body{
     margin: 1%;
     float: left;
     width: 23%;
-    height: 400px;
+    height: 100px;
     background-color: mediumaquamarine;
 }
 
@@ -74,6 +74,7 @@ body{
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    text-align: center;
 }
 
 .container{
