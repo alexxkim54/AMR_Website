@@ -30,7 +30,7 @@ def predict():
     skin_type = request.form['option']
     skin_tone = request.form['option1']
     allergens = request.form.getlist('allergies')
-    allergens = [x[:-5].lower() for x in allergens]
+    allergens = [x[:5].lower() for x in allergens]
 
     data = Dataset()
     data.fit_partial(users=[new_user], items=item_id)
