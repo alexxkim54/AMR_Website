@@ -30,7 +30,7 @@ def predict():
     skin_type = request.form['option']
     skin_tone = request.form['option1']
     allergens = request.form.getlist('allergies')
-    allergens = [x.lower() for x in allergens]
+    allergens = [x[:5].lower() for x in allergens]
 
     data = Dataset()
     data.fit_partial(users=[new_user], items=item_id)
@@ -39,7 +39,7 @@ def predict():
     items = list(range(1975))
     predict = model.predict(user_id_map2[new_user], items)
 
-    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
+    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     products = pd.read_csv('products.csv')
 
@@ -51,7 +51,7 @@ def predict():
             continue
         if float(price[1:]) <= budget:
             new_recs[key]= value
-    
+
     recs = {}
     for key, value in new_recs.items():
         for allergen in allergens:
@@ -61,7 +61,7 @@ def predict():
                 continue
             if allergen_present == 0:
                 recs[key]= value
-                
+
     new_recs = {}
     for key, value in recs.items():
         for allergen in allergens:
@@ -74,7 +74,7 @@ def predict():
                 continue
             if rating >= 3:
                 new_recs[key]= value
-                
+
     recs = new_recs
 
     face_recs = {}
@@ -95,7 +95,7 @@ def predict():
         if label == 'lips':
             lips_recs[key] = value
 
-    
+
     face = list(face_recs.keys())
     face_url = "We could not find any face products that match your preferences."
     eye_url = "We could not find any eye products that match your preferences."
@@ -148,7 +148,7 @@ def results():
     new_user = 'newUser'
 
     # change the item_id to actual input
-    item_id = 2060358   
+    item_id = 2060358
 
     data = Dataset()
     data.fit_partial(users=[new_user], items=[item_id])
@@ -157,9 +157,9 @@ def results():
     items = list(range(1975))
     predict = model.predict(user_id_map[new_user], items)
 
-    
 
-    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
+
+    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
     output = list(recs.keys())[:4]
 
