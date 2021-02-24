@@ -26,7 +26,7 @@ body{
 
 .reccomendations{
     border-width: 2px;
-    padding-bottom:420px;
+    padding-bottom:320px;
     border-style: solid;
     background-color: mediumaquamarine;
     border-color:#8E2C4F;
@@ -45,7 +45,7 @@ body{
     grid-column-gap: 50px;
     text-align: center;  
     margin: auto;
-    height:20vh;
+    height: 20px;
     width:90vw;
 }
 
@@ -55,7 +55,7 @@ body{
     margin: 1%;
     float: left;
     width: 23%;
-    height: 100px;
+    height: 80px;
     background-color: mediumaquamarine;
 }
 

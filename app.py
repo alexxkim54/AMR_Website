@@ -53,27 +53,30 @@ def predict():
             new_recs[key]= value
     
     recs = {}
-    for key, value in new_recs.items():
-        for allergen in allergens:
-            try:
-                allergen_present = products[products['productID'] == float(key)]['ingredients_'+allergen].values[0]
-            except IndexError:
-                continue
-            if allergen_present == 0:
-                recs[key]= value
+    if len(allergens) == 0:
+        recs = new_recs
+    else:
+        for key, value in new_recs.items():
+            for allergen in allergens:
+                try:
+                    allergen_present = products[products['productID'] == float(key)]['ingredients_'+allergen].values[0]
+                except IndexError:
+                    continue
+                if allergen_present == 0:
+                    recs[key]= value
                 
     new_recs = {}
     for key, value in recs.items():
-        for allergen in allergens:
-            try:
-                temp = reviews[reviews['productID'] == key]
-                temp = temp[temp['skin_tone'] == skin_tone]
-                temp = temp[temp['skin_type'] == skin_type]
-                rating = temp.rating.mean()
-            except IndexError:
-                continue
-            if rating >= 3:
-                new_recs[key]= value
+        # for allergen in allergens:
+        try:
+            temp = reviews[reviews['productID'] == key]
+            temp = temp[temp['skin_tone'] == skin_tone]
+            temp = temp[temp['skin_type'] == skin_type]
+            rating = temp.rating.mean()
+        except IndexError:
+            continue
+        if rating >= 3:
+            new_recs[key]= value
                 
     recs = new_recs
 
@@ -98,9 +101,21 @@ def predict():
     
     face = list(face_recs.keys())
     face_url = "We could not find any face products that match your preferences."
+    face_brand = ''
+    face_name = ''
+    face_price = ''
     eye_url = "We could not find any eye products that match your preferences."
+    eye_brand = ''
+    eye_name = ''
+    eye_price = ''
     cheek_url = "We could not find any cheek products that match your preferences."
+    cheek_brand = ''
+    cheek_name = ''
+    cheek_price = ''
     lips_url = "We could not find any lip products that match your preferences."
+    lips_brand = ''
+    lips_name = ''
+    lips_price = ''
 
     if len(face) > 0:
         face = face[0]
@@ -167,31 +182,31 @@ def predict():
     #utput = list(zip(brand_output, product_output, price_output, url_output))
     return render_template('index.html', prediction_text=output)
 
-@app.route('/results',methods=['POST'])
-def results():
+# @app.route('/results',methods=['POST'])
+# def results():
 
-    data = request.get_json(force=True)
-    print(data)
+#     data = request.get_json(force=True)
+#     print(data)
 
-    new_user = 'newUser'
+#     new_user = 'newUser'
 
-    # change the item_id to actual input
-    item_id = 2060358   
+#     # change the item_id to actual input
+#     item_id = 2060358   
 
-    data = Dataset()
-    data.fit_partial(users=[new_user], items=[item_id])
-    (new_int, new_weights) = data.build_interactions(list(zip([new_user], [item_id])))
-    user_id_map, user_feature_map, item_id_map, item_feature_map = data.mapping()
-    items = list(range(1975))
-    predict = model.predict(user_id_map[new_user], items)
+#     data = Dataset()
+#     data.fit_partial(users=[new_user], items=[item_id])
+#     (new_int, new_weights) = data.build_interactions(list(zip([new_user], [item_id])))
+#     user_id_map, user_feature_map, item_id_map, item_feature_map = data.mapping()
+#     items = list(range(1975))
+#     predict = model.predict(user_id_map[new_user], items)
 
     
 
-    recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
-    recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
-    output = list(recs.keys())[:4]
+#     recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
+#     recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
+#     output = list(recs.keys())[:4]
 
-    return jsonify(output)
+#     return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
