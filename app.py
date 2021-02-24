@@ -133,11 +133,39 @@ def predict():
         lips_name = products[products['productID'] == lips].name.values[0]
         lips_price = products[products['productID'] == lips].price.values[0]
 
-    brand_output = [face_brand, eye_brand, cheek_brand, lips_brand]
-    product_output = [face_name, eye_name, cheek_name, lips_name]
-    price_output = [face_price, eye_price, cheek_price, lips_price]
-    url_output = [face_url, eye_url, cheek_url, lips_url]
-    return render_template('index.html', brand_text=brand_output, product_text=product_output, price_text=price_output, link_text=url_output)
+    output = [
+        {
+            'brand': face_brand,
+            'product': face_name,
+            'price': face_price,
+            'url': face_url
+        },
+        {
+            'brand': eye_brand,
+            'product': eye_name,
+            'price': eye_price,
+            'url': eye_url
+        },
+        {
+            'brand': cheek_brand,
+            'product': cheek_name,
+            'price': cheek_price,
+            'url': cheek_url
+        },
+        {
+            'brand': lips_brand,
+            'product': lips_name,
+            'price': lips_price,
+            'url': lips_url
+        }
+    ]
+
+    #brand_output = [face_brand, eye_brand, cheek_brand, lips_brand]
+    #product_output = [face_name, eye_name, cheek_name, lips_name]
+    #price_output = [face_price, eye_price, cheek_price, lips_price]
+    #url_output = [face_url, eye_url, cheek_url, lips_url]
+    #utput = list(zip(brand_output, product_output, price_output, url_output))
+    return render_template('index.html', prediction_text=output)
 
 @app.route('/results',methods=['POST'])
 def results():
