@@ -1,5 +1,5 @@
 body{
-    background-color:lightblue;   
+    background-color: honeydew;   
 }
 
 .user_survey{
@@ -45,7 +45,10 @@ body{
     grid-column-gap: 50px;
     text-align: center;  
     margin: auto;
+<<<<<<< HEAD
+=======
     height: 20px;
+>>>>>>> a3f41a1cf319ffe46e385ad68d807cdef2523c08
     width:90vw;
 }
 
