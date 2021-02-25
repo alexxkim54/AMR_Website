@@ -1,5 +1,5 @@
 body{
-    background-color:lightblue;   
+    background-color: honeydew;   
 }
 
 .user_survey{
@@ -26,7 +26,7 @@ body{
 
 .reccomendations{
     border-width: 2px;
-    padding-bottom:420px;
+    padding-bottom:320px;
     border-style: solid;
     background-color: mediumaquamarine;
     border-color:#8E2C4F;
@@ -45,6 +45,10 @@ body{
     grid-column-gap: 50px;
     text-align: center;  
     margin: auto;
+<<<<<<< HEAD
+=======
+    height: 20px;
+>>>>>>> a3f41a1cf319ffe46e385ad68d807cdef2523c08
     width:90vw;
 }
 
@@ -54,7 +58,7 @@ body{
     margin: 1%;
     float: left;
     width: 23%;
-    height: 100px;
+    height: 80px;
     background-color: mediumaquamarine;
 }
 
