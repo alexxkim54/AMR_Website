@@ -12,7 +12,7 @@ def local_css(file_name):
 
 local_css("static/css/style.css")
 
-html = f"<button><img src='https://www.sephora.com/img/ufe/rich-profile/skintone-porcelain.png'></button>" 
+html = f"<button><img src='https://www.sephora.com/img/ufe/rich-profile/skintone-porcelain.png'></button>"
 
 st.title('Makeup Recommender')
 
@@ -100,7 +100,7 @@ if clicked:
             items = list(range(1975))
             predict = model.predict(user_id_map2[new_user], items)
 
-            recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))} 
+            recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
             recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
             products = pd.read_csv('products.csv')
 
@@ -112,7 +112,7 @@ if clicked:
                     continue
                 if float(price[1:]) <= budget:
                     new_recs[key]= value
-            
+
             recs = {}
             if len(allergies) == 0:
                 recs = new_recs
@@ -125,7 +125,7 @@ if clicked:
                             continue
                         if allergen_present == 0:
                             recs[key]= value
-                        
+
             new_recs = {}
             for key, value in recs.items():
                 # for allergen in allergens:
@@ -138,7 +138,7 @@ if clicked:
                     continue
                 if rating >= 3:
                     new_recs[key]= value
-                        
+
             recs = new_recs
 
             face_recs = {}
@@ -159,7 +159,7 @@ if clicked:
                 if label == 'lips':
                     lips_recs[key] = value
 
-            
+
             face_url = "We could not find any face products that match your preferences."
             face_brand = ''
             face_name = ''
@@ -209,44 +209,43 @@ if clicked:
                 lips_name = products[products['productID'] == lips].name.values[0]
                 lips_price = products[products['productID'] == lips].price.values[0]
 
-            else:
-                face_col, eye_col, cheek_col, lips_col = st.beta_columns(4)
-                with face_col:
-                    if len(face) == 0:
-                        st.write('We could not find any products that match your preferences.')
-                    else:
-                        st.header("Face")
-                        st.markdown('**Brand:** ' + face_brand)
-                        st.markdown('**Product:** ' + face_name)
-                        st.markdown('**Price:** ' + face_price)
-                        st.write('[Product Link](face_url)')
+            face_col, eye_col, cheek_col, lips_col = st.beta_columns(4)
+            with face_col:
+                if len(face) == 0:
+                    st.write('We could not find any products that match your preferences.')
+                else:
+                    st.header("Face")
+                    st.markdown('**Brand:** ' + face_brand)
+                    st.markdown('**Product:** ' + face_name)
+                    st.markdown('**Price:** ' + face_price)
+                    st.write('[Product Link](face_url)')
 
-                with eye_col:
-                    if len(eye) == 0:
-                        st.write('We could not find any products that match your preferences.')
-                    else:
-                        st.header("Eye")
-                        st.write('**Brand:** ' + eye_brand)
-                        st.write('**Product:** ' + eye_name)
-                        st.write('**Price:** ' + eye_price)
-                        st.write('[Product Link](eye_url)')
+            with eye_col:
+                if len(eye) == 0:
+                    st.write('We could not find any products that match your preferences.')
+                else:
+                    st.header("Eye")
+                    st.write('**Brand:** ' + eye_brand)
+                    st.write('**Product:** ' + eye_name)
+                    st.write('**Price:** ' + eye_price)
+                    st.write('[Product Link](eye_url)')
 
-                with cheek_col:
-                    if len(cheek) == 0:
-                        st.write('We could not find any products that match your preferences.')
-                    else:
-                        st.header("Cheek")
-                        st.write('**Brand:** ' + cheek_brand)
-                        st.write('**Product:** ' + cheek_name)
-                        st.write('**Price:** ' + cheek_price)
-                        st.write('[Product Link](cheek_url)')
-                
-                with lips_col:
-                    if len(lips) == 0:
-                        st.write('We could not find any products that match your preferences.')
-                    else:
-                        st.header("Lips")
-                        st.write('**Brand:** ' + lips_brand)
-                        st.write('**Product:** ' + lips_name)
-                        st.write('**Price:** ' + lips_price)
-                        st.write('[Product Link](lips_url)')
+            with cheek_col:
+                if len(cheek) == 0:
+                    st.write('We could not find any products that match your preferences.')
+                else:
+                    st.header("Cheek")
+                    st.write('**Brand:** ' + cheek_brand)
+                    st.write('**Product:** ' + cheek_name)
+                    st.write('**Price:** ' + cheek_price)
+                    st.write('[Product Link](cheek_url)')
+
+            with lips_col:
+                if len(lips) == 0:
+                    st.write('We could not find any products that match your preferences.')
+                else:
+                    st.header("Lips")
+                    st.write('**Brand:** ' + lips_brand)
+                    st.write('**Product:** ' + lips_name)
+                    st.write('**Price:** ' + lips_price)
+                    st.write('[Product Link](lips_url)')
