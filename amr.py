@@ -177,33 +177,33 @@ if clicked:
             lips_name = ''
             lips_price = ''
 
-            face = list(face_recs.keys())
-            if len(face) > 0:
-                face = face[0]
+            face_list = list(face_recs.keys())
+            if len(face_list) > 0:
+                face = face_list[0]
                 face_brand = products[products['productID'] == face].brand.values[0]
                 face_url = products[products['productID'] == face].URL.values[0]
                 face_name = products[products['productID'] == face].name.values[0]
                 face_price = products[products['productID'] == face].price.values[0]
 
-            eye = list(eye_recs.keys())
-            if len(eye) > 0:
-                eye = eye[0]
+            eye_list = list(eye_recs.keys())
+            if len(eye_list) > 0:
+                eye = eye_list[0]
                 eye_brand = products[products['productID'] == eye].brand.values[0]
                 eye_url = products[products['productID'] == eye].URL.values[0]
                 eye_name = products[products['productID'] == eye].name.values[0]
                 eye_price = products[products['productID'] == eye].price.values[0]
 
-            cheek = list(cheek_recs.keys())
-            if len(cheek) > 0:
-                cheek = cheek[0]
+            cheek_list = list(cheek_recs.keys())
+            if len(cheek_list) > 0:
+                cheek = cheek_list[0]
                 cheek_brand = products[products['productID'] == cheek].brand.values[0]
                 cheek_url = products[products['productID'] == cheek].URL.values[0]
                 cheek_name = products[products['productID'] == cheek].name.values[0]
                 cheek_price = products[products['productID'] == cheek].price.values[0]
 
-            lips = list(lips_recs.keys())
-            if len(lips) > 0:
-                lips = lips[0]
+            lips_list = list(lips_recs.keys())
+            if len(lips_list) > 0:
+                lips = lips_list[0]
                 lips_brand = products[products['productID'] == lips].brand.values[0]
                 lips_url = products[products['productID'] == lips].URL.values[0]
                 lips_name = products[products['productID'] == lips].name.values[0]
@@ -211,7 +211,7 @@ if clicked:
 
             face_col, eye_col, cheek_col, lips_col = st.beta_columns(4)
             with face_col:
-                if len(face) == 0:
+                if len(face_list) == 0:
                     st.write('We could not find any products that match your preferences.')
                 else:
                     st.header("Face")
@@ -221,7 +221,7 @@ if clicked:
                     st.write('[Product Link](face_url)')
 
             with eye_col:
-                if len(eye) == 0:
+                if len(eye_list) == 0:
                     st.write('We could not find any products that match your preferences.')
                 else:
                     st.header("Eye")
@@ -231,7 +231,7 @@ if clicked:
                     st.write('[Product Link](eye_url)')
 
             with cheek_col:
-                if len(cheek) == 0:
+                if len(cheek_list) == 0:
                     st.write('We could not find any products that match your preferences.')
                 else:
                     st.header("Cheek")
@@ -241,7 +241,7 @@ if clicked:
                     st.write('[Product Link](cheek_url)')
 
             with lips_col:
-                if len(lips) == 0:
+                if len(lips_list) == 0:
                     st.write('We could not find any products that match your preferences.')
                 else:
                     st.header("Lips")
