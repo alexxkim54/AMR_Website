@@ -5,7 +5,7 @@ import pickle
 from lightfm import LightFM
 from lightfm.data import Dataset
 
-st.set_page_config(layout='centered')
+st.set_page_config(page_title='Makeup Recommender', layout='centered')
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
