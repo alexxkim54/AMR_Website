@@ -12,8 +12,6 @@ def local_css(file_name):
 
 local_css("static/css/style.css")
 
-html = f"<button><img src='https://www.sephora.com/img/ufe/rich-profile/skintone-porcelain.png'></button>"
-
 st.title('Makeup Recommender')
 
 st.header('About the Recommender')
@@ -29,23 +27,23 @@ st.write('')
 st.write('Which best describes your skin tone?')
 porcelain, fair, light, medium, tan, olive, deep, dark, ebony = st.beta_columns(9)
 with porcelain:
-        st.image('./skintone-porcelain.png', caption='Porcelain')
+        st.image('images/skintone-porcelain.png', caption='Porcelain')
 with fair:
-        st.image('./skintone-fair.png', caption='Fair')
+        st.image('images/skintone-fair.png', caption='Fair')
 with light:
-        st.image('./skintone-light.png', caption='Light')
+        st.image('images/skintone-light.png', caption='Light')
 with medium:
-        st.image('./skintone-medium.png', caption='Medium')
+        st.image('images/skintone-medium.png', caption='Medium')
 with tan:
-        st.image('./skintone-tan.png', caption='Tan')
+        st.image('images/skintone-tan.png', caption='Tan')
 with olive:
-        st.image('./skintone-olive.png', caption='Olive')
+        st.image('images/skintone-olive.png', caption='Olive')
 with deep:
-        st.image('./skintone-deep.png', caption='Deep')
+        st.image('images/skintone-deep.png', caption='Deep')
 with dark:
-        st.image('./skintone-dark.png', caption='Dark')
+        st.image('images/skintone-dark.png', caption='Dark')
 with ebony:
-        st.image('./skintone-ebony.png', caption='Ebony')
+        st.image('images/skintone-ebony.png', caption='Ebony')
 skin_tone = st.radio('', ('Porcelain', 'Fair', 'Light', 'Medium', 'Tan', 'Olive', 'Deep', 'Dark', 'Ebony'))
 st.write('')
 st.write('')
@@ -62,7 +60,7 @@ st.write('')
 st.write('')
 st.write('We would love to know which products you currently enjoy! Knowing what you already love will help us make better recommendations. Find product IDs on [Sephora\'s website](https://www.sephora.com/shop/makeup-cosmetics).')
 if st.button('Not sure how to find IDs? Click here'):
-    st.image('./productID.JPEG')
+    st.image('images/productID.JPEG')
 products = st.text_input('Please enter at least one Sephora product ID below (separated by commas).')
 st.write('')
 st.write('')
@@ -81,7 +79,7 @@ if clicked:
     else:
         with st.spinner('About to make you blush...'):
             model = pickle.load(open('model.pkl', 'rb'))
-            reviews = pd.read_csv("product_reviews.csv")
+            reviews = pd.read_csv("data/product_reviews.csv")
             dataset = Dataset()
             dataset.fit(users = (x for x in reviews.userID),
                                 items = (x for x in reviews.productID))
@@ -104,7 +102,7 @@ if clicked:
 
             recs = {list(item_id_map.keys())[i]: predict[i] for i in range(len(predict))}
             recs = dict(sorted(recs.items(), key=lambda item: item[1], reverse=True))
-            products = pd.read_csv('products.csv')
+            products = pd.read_csv('data/products.csv')
 
             new_recs = {}
             for key, value in recs.items():
