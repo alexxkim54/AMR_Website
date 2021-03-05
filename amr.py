@@ -60,7 +60,9 @@ allergies = st.multiselect('Select all those that apply.', ['Rubber', 'Fragrance
 st.write('')
 st.write('')
 st.write('')
-st.write('We would love to know which products you currently enjoy! Knowing what you already love will help us make better recommendations.')
+st.write('We would love to know which products you currently enjoy! Knowing what you already love will help us make better recommendations. Find product IDs on [Sephora\'s website](https://www.sephora.com/shop/makeup-cosmetics).')
+if st.button('Not sure how to find IDs? Click here'):
+    st.image('./productID.JPEG')
 products = st.text_input('Please enter at least one Sephora product ID below (separated by commas).')
 st.write('')
 st.write('')
@@ -89,7 +91,7 @@ if clicked:
 
             # change the item_id to actual input
             item_id = products.split(',')
-            item_id = [id for id in item_id if id in reviews.productID]
+            item_id = [id.strip() for id in item_id if id.strip() in reviews.productID]
 
             allergies = [x.lower() for x in allergies]
 
@@ -214,11 +216,15 @@ if clicked:
                 if len(face_list) == 0:
                     st.write('We could not find any products that match your preferences.')
                 else:
+                    print(face_url)
                     st.header("Face")
                     st.markdown('**Brand:** ' + face_brand)
                     st.markdown('**Product:** ' + face_name)
                     st.markdown('**Price:** ' + face_price)
-                    st.write('[Product Link](face_url)')
+                    #if st.button('Product Link'):
+                    #    webbrowser.open_new_tab(face_url)
+                    #st.write('[Product Link](face_url)')
+                    st.write('[Product Link]({})'.format(face_url))
 
             with eye_col:
                 if len(eye_list) == 0:
@@ -228,7 +234,7 @@ if clicked:
                     st.write('**Brand:** ' + eye_brand)
                     st.write('**Product:** ' + eye_name)
                     st.write('**Price:** ' + eye_price)
-                    st.write('[Product Link](eye_url)')
+                    st.write('[Product Link]({})'.format(eye_url))
 
             with cheek_col:
                 if len(cheek_list) == 0:
@@ -238,7 +244,7 @@ if clicked:
                     st.write('**Brand:** ' + cheek_brand)
                     st.write('**Product:** ' + cheek_name)
                     st.write('**Price:** ' + cheek_price)
-                    st.write('[Product Link](cheek_url)')
+                    st.write('[Product Link]({})'.format(cheek_url))
 
             with lips_col:
                 if len(lips_list) == 0:
@@ -248,4 +254,4 @@ if clicked:
                     st.write('**Brand:** ' + lips_brand)
                     st.write('**Product:** ' + lips_name)
                     st.write('**Price:** ' + lips_price)
-                    st.write('[Product Link](lips_url)')
+                    st.write('[Product Link]({})'.format(lips_url))
