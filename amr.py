@@ -71,7 +71,8 @@ st.sidebar.text('Shayal Singh, scs008@ucsd.edu')
 st.sidebar.text('Alex Kim, aek005@ucsd.edu')
 st.sidebar.text('Justin Lee, jul290@ucsd.edu')
 st.sidebar.title('Repo :lipstick:')
-st.sidebar.write('Find our GitHub repo [here](https://github.com/alexxkim54/AMR_Website)')
+st.sidebar.write('Find our webpage GitHub repo [here](https://github.com/alexxkim54/AMR_Website)')
+st.sidebar.write('Find our model GitHub repo [here] (https://github.com/alexxkim54/Aesthetic_Makeup_Recommender)')
 
 if clicked:
     if (len(products) == 0):
